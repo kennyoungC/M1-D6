@@ -60,7 +60,7 @@ writeLine("Ex. G");
 /* Ex.G 
    Programmatically remove the last skill from the "skills" array inside the "me" object.
 */
-let removeLastSkill = delete me.skills[2];
+let removeLastSkill = delete me.skills.pop();
 console.log(me);
 console.log(`--------JAVASCRIPT FUNCTIONS---------`);
 writeLine("Ex. 1");
@@ -68,7 +68,7 @@ writeLine("Ex. 1");
     Write a function called "dice"; it should randomize an integer number between 1 and 6.
 */
 const dice = () => {
-  return Math.floor(Math.random() * 6);
+  return Math.floor(Math.random() * 6 + 1);
 };
 console.log(dice());
 writeLine("Ex. 2");
@@ -112,25 +112,24 @@ writeLine("Ex. 5");
    Write a function called "onlyLetters" which receives a string as a parameter and returns it removing all the digits.
    Ex.: onlyLetters("I have 4 dogs")  => returns "I have  dogs"
 */
-// const onlyLetters = (str) => {
-//   for (let i = 0; i < str.length; i++)
-//     if (typeof str === "number") {
-//       return str;
-//     }
-// };
-// console.log(onlyLetters("i love my mummy 4 real"));
+const onlyLetters = (str) => {
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    let currentLetter = str[i];
+    if (isNaN(currentLetter)) result += currentLetter;
+  }
+  return result;
+};
+
+console.log(onlyLetters("i love my mummy 4 real"));
 writeLine("Ex. 6");
 /* Ex.6 
    Write a function called "isThisAnEmail" which receives a string as a parameter and returns true if the string is a valid email address.
 */
 const isThisAnEmail = (str) => {
-  for (let i = 0; i < str.length; i++)
-    if (str.includes("@")) {
-      return `this is a valid email-Address`;
-    } else {
-      return `please input a valid email-Address`;
-    }
+  return str.indexOf("@") > 0 && str.indexOf(".") > 0;
 };
+
 console.log(isThisAnEmail("obikenneth913@gmail.com"));
 writeLine("Ex. 7");
 /* Ex.7
@@ -182,10 +181,24 @@ writeLine("Ex. 9");
 /* Ex.9
    Write a function called "howManyDays" which receives a date as a parameter and should return the number of days passed since that date.
 */
+// function howManyDays(selectedDate) {
+//   let today = new Date();
+//   let difference = today - selectedDate;
+//   return difference / (1000 * 60 * 60 * 24);
+// }
+// console.log(howManyDays(12));
 writeLine("Ex. 10");
 /* Ex.10
    Write a function called "isTodayMyBirthday" which should return true if today's your birthday, false otherwise.
 */
+
+function isTodayMyBirthday() {
+  let today = new Date();
+  let bday = new Date(1997, 3, 2); // 3 april 97
+  return (
+    today.getDay() === bday.getDay() && today.getMonth() === bday.getMonth()
+  );
+}
 
 console.log(`--------JAVASCRIPT OBJECTS---------`);
 /* This movies array is used throughout the exercises. Please don't change it :)  */
@@ -308,11 +321,26 @@ writeLine("Ex. 11");
 /* Ex.11
    Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
 */
+
+function deleteProp(obj, prop) {
+  delete obj[prop];
+  return obj;
+}
 writeLine("Ex. 12");
 
 /* Ex.12 
     Write a function called "olderMovie" which finds the oldest movie in the array provided at the end of this file.
 */
+function olderMovie() {
+  let result = { Year: 2100 };
+  for (let i = 0; i < movies.length; i++) {
+    let movie = movies[i];
+    let currentYear = parseInt(movie.Year);
+    if (currentYear < result.Year) result = movie;
+  }
+  return result;
+}
+console.log(olderMovie());
 writeLine("Ex. 13");
 /* Ex.13
     Write a function called "countMovies" which returns the number of movies contained in the array provided at the end of this file.
@@ -329,23 +357,26 @@ writeLine("Ex. 14");
 */
 const onlyTheTitles = () => {
   let title = [];
-  for (let i = 0; i < movies.length; i++) title = title.concat(movies[i].Title);
+  for (let i = 0; i < movies.length; i++) {
+    let movie = movies[i];
+    title.push(movie.Title);
+  }
   return title;
 };
 console.log(onlyTheTitles());
-for (let i = 0; i < movies.length; i++) console.log(movies[i].Year);
 writeLine("Ex. 15");
 
 /* Ex.15
    Write a function called "onlyInThisMillennium" which returns only the movies produced in this millennium.
 */
-const onlyInThisMillennium = () => {
-  let thisMillennium = [];
-  for (let i = 0; i < movies.length; i++)
-    if (movies[i].Year > 2000)
-      thisMillennium = thisMillennium.concat(movies[i]);
-  return thisMillennium;
-};
+function onlyInThisMillennium() {
+  let result = [];
+  for (let i = 0; i < movies.length; i++) {
+    let movie = movies[i];
+    if (parseInt(movie.Year) > 1999) result.push(movie);
+  }
+  return result;
+}
 
 console.log(onlyInThisMillennium());
 
@@ -354,27 +385,83 @@ writeLine("Ex. 16");
 /* Ex.16 
     Write a function called "getMovieById" which receives an id as a parameter and returns the movie with the given id.
 */
+function getMovieById(id) {
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].imdbID === id) {
+      return movies[i];
+    }
+  }
+  return {};
+}
+
+console.log(getMovieById("tt4154796"));
 writeLine("Ex. 17");
 
 /* Ex.17
-    Write a function called "sumAllTheYears" which returns the sum of all the years in which the movies provided have been produced.
-*/
+//     Write a function called "sumAllTheYears" which returns the sum of all the years in which the movies provided have been produced.
+// */
+
+const sumAllTheYears = () => {
+  let result = 0;
+  for (let i = 0; i < movies.length; i++) {
+    result += parseInt(movies[i].Year);
+  }
+  return result;
+};
+console.log(sumAllTheYears());
 writeLine("Ex. 18");
 
 /* Ex.18
     Write a function called "searchByTitle" which receives a string as a parameter and returns all the movies which contain that string in the title.
 */
+
+function searchByTitle(keyword) {
+  let result = [];
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].Title.indexOf(keyword) !== -1) {
+      result.push(movies[i]);
+    }
+  }
+  return result;
+}
+
+console.log(searchByTitle("Rings"));
 writeLine("Ex. 19");
 /* Ex.19
     Write a function called "searchAndDivide" which receives a string as a parameter and returns an object;
     this object should contain an array called "match", made by all the movies which contain the given string in the title,
     and another array "unmatch" with all the remaining ones.
 */
+function searchAndDivide(word) {
+  let result = {
+    match: [],
+    unmatch: [],
+  };
+  for (let i = 0; i < movies.length; i++) {
+    if (movies[i].Title.indexOf(word) !== -1) {
+      result.match.push(movies[i]);
+    } else {
+      result.unmatch.push(movies[i]);
+    }
+  }
+  return result;
+}
+console.log(searchAndDivide("Avengers"));
 writeLine("Ex. 20");
 /* Ex.20
    Write a function called "removeIndex" which receives a number as a parameter and returns the movies array without the element in the given position.
-*/
+*/ const removeIndex = (n) => {
+  let result = [];
+  for (let i = 0; i < movies.length; i++) {
+    if (n === i) {
+      continue;
+    }
+    result.push(movies[i]);
+  }
+  return result;
+};
 
+console.log(removeIndex(1));
 // [EXTRAS] JS Advanced
 
 /* Ex.21
@@ -385,7 +472,16 @@ writeLine("Ex. 20");
   **
   ***
 */
-
+function halfTree(height) {
+  for (let i = 0; i < height; i++) {
+    let toPrint = "";
+    for (let j = 0; j < i; j++) {
+      toPrint += "*";
+    }
+    console.log(toPrint);
+  }
+}
+console.log(halfTree(10));
 /* Ex.22 
   Create a function called "tree" which receives a number as a parameter and builds an "*" tree with the given height.
   Example: 
@@ -394,7 +490,22 @@ writeLine("Ex. 20");
    *** 
   *****
 */
+function tree(height) {
+  for (let i = 0; i < height; i++) {
+    let stars = "*".repeat(2 * i + 1);
+    let spacesBefore = " ".repeat(height - i - 1);
+    console.log(spacesBefore + stars);
+  }
+}
+console.log(tree(10));
 
 /* Ex.23
   Create a function called "isItPrime" that receives a number as a parameter and returns true if the given number is a prime number.
 */
+function isItPrime(n) {
+  for (i = 2; i < n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+console.log(isItPrime(4));
