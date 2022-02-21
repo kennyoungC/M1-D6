@@ -114,8 +114,8 @@ writeLine("Ex. 5");
 */
 // const onlyLetters = (str) => {
 //   for (let i = 0; i < str.length; i++)
-//     if (typeof str[i] === "number") {
-//       return str.substr(str[i], str.length);
+//     if (typeof str === "number") {
+//       return str;
 //     }
 // };
 // console.log(onlyLetters("i love my mummy 4 real"));
@@ -123,10 +123,35 @@ writeLine("Ex. 6");
 /* Ex.6 
    Write a function called "isThisAnEmail" which receives a string as a parameter and returns true if the string is a valid email address.
 */
+const isThisAnEmail = (str) => {
+  for (let i = 0; i < str.length; i++)
+    if (str.includes("@")) {
+      return `this is a valid email-Address`;
+    } else {
+      return `please input a valid email-Address`;
+    }
+};
+console.log(isThisAnEmail("obikenneth913@gmail.com"));
 writeLine("Ex. 7");
 /* Ex.7
    Write a function called "whatDayIsIt" that should return the current day of the week.
 */
+
+function whatDayIsIt() {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let date = new Date();
+  let dayName = days[date.getDay()];
+  return dayName;
+}
+console.log(whatDayIsIt());
 writeLine("Ex. 8");
 /* Ex.8
     Write a function called "rollTheDices" which receives a number as a parameter.
@@ -138,6 +163,21 @@ writeLine("Ex. 8");
         values: [3, 3, 4]
     }
 */
+
+const rollTheDices = (n) => {
+  let result = {
+    sum: 0,
+    values: [],
+  };
+  for (let i = 0; i < n; i++) {
+    let randonDice = dice();
+    result.values.push(randonDice);
+    result.sum += randonDice;
+  }
+  return result;
+};
+console.log(rollTheDices(3));
+
 writeLine("Ex. 9");
 /* Ex.9
    Write a function called "howManyDays" which receives a date as a parameter and should return the number of days passed since that date.
@@ -148,80 +188,6 @@ writeLine("Ex. 10");
 */
 
 console.log(`--------JAVASCRIPT OBJECTS---------`);
-// NOTE: movies array is defined at the end of this file!
-writeLine("Ex. 11");
-
-/* Ex.11
-   Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
-*/
-writeLine("Ex. 12");
-
-/* Ex.12 
-    Write a function called "olderMovie" which finds the oldest movie in the array provided at the end of this file.
-*/
-writeLine("Ex. 13");
-/* Ex.13
-    Write a function called "countMovies" which returns the number of movies contained in the array provided at the end of this file.
-*/
-writeLine("Ex. 14");
-/* Ex.14
-    Write a function called "onlyTheTitles" which creates an array with just the titles of the movies provided in the array at the end of the file.
-*/
-writeLine("Ex. 15");
-
-/* Ex.15
-   Write a function called "onlyInThisMillennium" which returns only the movies produced in this millennium.
-*/
-writeLine("Ex. 16");
-
-/* Ex.16 
-    Write a function called "getMovieById" which receives an id as a parameter and returns the movie with the given id.
-*/
-writeLine("Ex. 17");
-
-/* Ex.17
-    Write a function called "sumAllTheYears" which returns the sum of all the years in which the movies provided have been produced.
-*/
-writeLine("Ex. 18");
-
-/* Ex.18
-    Write a function called "searchByTitle" which receives a string as a parameter and returns all the movies which contain that string in the title.
-*/
-writeLine("Ex. 19");
-/* Ex.19
-    Write a function called "searchAndDivide" which receives a string as a parameter and returns an object;
-    this object should contain an array called "match", made by all the movies which contain the given string in the title,
-    and another array "unmatch" with all the remaining ones.
-*/
-writeLine("Ex. 20");
-/* Ex.20
-   Write a function called "removeIndex" which receives a number as a parameter and returns the movies array without the element in the given position.
-*/
-
-// [EXTRAS] JS Advanced
-
-/* Ex.21
-  Create a function called "halfTree" which receives a number as a parameter and builds an "*" half tree with the given height.
-  Example:
-  halfTree(3)
-  *
-  **
-  ***
-*/
-
-/* Ex.22 
-  Create a function called "tree" which receives a number as a parameter and builds an "*" tree with the given height.
-  Example: 
-  tree(3)
-    *  
-   *** 
-  *****
-*/
-
-/* Ex.23
-  Create a function called "isItPrime" that receives a number as a parameter and returns true if the given number is a prime number.
-*/
-
 /* This movies array is used throughout the exercises. Please don't change it :)  */
 const movies = [
   {
@@ -337,3 +303,98 @@ const movies = [
       "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg",
   },
 ];
+writeLine("Ex. 11");
+
+/* Ex.11
+   Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
+*/
+writeLine("Ex. 12");
+
+/* Ex.12 
+    Write a function called "olderMovie" which finds the oldest movie in the array provided at the end of this file.
+*/
+writeLine("Ex. 13");
+/* Ex.13
+    Write a function called "countMovies" which returns the number of movies contained in the array provided at the end of this file.
+*/
+
+const countMovies = () => {
+  for (let i = 0; i < movies.length; i++) return movies.length;
+};
+
+console.log(countMovies());
+writeLine("Ex. 14");
+/* Ex.14
+    Write a function called "onlyTheTitles" which creates an array with just the titles of the movies provided in the array at the end of the file.
+*/
+const onlyTheTitles = () => {
+  let title = [];
+  for (let i = 0; i < movies.length; i++) title = title.concat(movies[i].Title);
+  return title;
+};
+console.log(onlyTheTitles());
+for (let i = 0; i < movies.length; i++) console.log(movies[i].Year);
+writeLine("Ex. 15");
+
+/* Ex.15
+   Write a function called "onlyInThisMillennium" which returns only the movies produced in this millennium.
+*/
+const onlyInThisMillennium = () => {
+  let thisMillennium = [];
+  for (let i = 0; i < movies.length; i++)
+    if (movies[i].Year > 2000)
+      thisMillennium = thisMillennium.concat(movies[i]);
+  return thisMillennium;
+};
+
+console.log(onlyInThisMillennium());
+
+writeLine("Ex. 16");
+
+/* Ex.16 
+    Write a function called "getMovieById" which receives an id as a parameter and returns the movie with the given id.
+*/
+writeLine("Ex. 17");
+
+/* Ex.17
+    Write a function called "sumAllTheYears" which returns the sum of all the years in which the movies provided have been produced.
+*/
+writeLine("Ex. 18");
+
+/* Ex.18
+    Write a function called "searchByTitle" which receives a string as a parameter and returns all the movies which contain that string in the title.
+*/
+writeLine("Ex. 19");
+/* Ex.19
+    Write a function called "searchAndDivide" which receives a string as a parameter and returns an object;
+    this object should contain an array called "match", made by all the movies which contain the given string in the title,
+    and another array "unmatch" with all the remaining ones.
+*/
+writeLine("Ex. 20");
+/* Ex.20
+   Write a function called "removeIndex" which receives a number as a parameter and returns the movies array without the element in the given position.
+*/
+
+// [EXTRAS] JS Advanced
+
+/* Ex.21
+  Create a function called "halfTree" which receives a number as a parameter and builds an "*" half tree with the given height.
+  Example:
+  halfTree(3)
+  *
+  **
+  ***
+*/
+
+/* Ex.22 
+  Create a function called "tree" which receives a number as a parameter and builds an "*" tree with the given height.
+  Example: 
+  tree(3)
+    *  
+   *** 
+  *****
+*/
+
+/* Ex.23
+  Create a function called "isItPrime" that receives a number as a parameter and returns true if the given number is a prime number.
+*/
