@@ -9,68 +9,125 @@
     - Complete as many exercise that you can
     - Publish them into your own GitHub account and upload repository link on Eduflow before 16.30 (Berlin Time) 
 */
-
-//JS Basics
-
+const writeLine = (Title) => {
+  console.log(`>----------------------< ${Title} >----------------------<`);
+};
+console.log(`--------JAVASCRIPT BASICS---------`);
+writeLine("Ex. A");
 /* Ex.A
    Create a variable called "test" and assign a string to it.
 */
 
+const test = "kenneth";
+console.log(test);
+writeLine("Ex. B");
 /* Ex.B
     Create a variable called "sum" and assign to it the result of the sum between 10 and 20.
 */
-
+const sum = 10 + 20;
+console.log(sum);
+writeLine("Ex. C");
 /* Ex.C 
     Create a variable called "random" and assign to it a random number between 0 and 20 (it should be randomly created at each execution).
 */
-
+const random = Math.floor(Math.random() * 20);
+console.log(random);
+writeLine("Ex. D");
 /* Ex.D
     Create a variable called "me" and assign to it an object containing the following information: name = your name, surname = your surname, age = your age.
 */
-
+const me = {
+  name: "KENNETH",
+  surname: "OBI",
+  age: 25,
+};
+console.log(me);
+writeLine("Ex. E");
 /* Ex.E 
     Programmatically remove the age property from the previously create object.
 */
+delete me.age;
+console.log(me);
 
+writeLine("Ex. F");
 /* Ex.F 
    Programmatically add to the object me an array called "skills", containing the programming languages you know right now.
 */
+me.skills = ["HTML", "CSS", "JAVASCRIPT"];
+console.log(me);
 
+writeLine("Ex. G");
 /* Ex.G 
    Programmatically remove the last skill from the "skills" array inside the "me" object.
 */
-
-// JS Functions
+let removeLastSkill = delete me.skills[2];
+console.log(me);
+console.log(`--------JAVASCRIPT FUNCTIONS---------`);
+writeLine("Ex. 1");
 /* Ex.1
     Write a function called "dice"; it should randomize an integer number between 1 and 6.
 */
-
+const dice = () => {
+  return Math.floor(Math.random() * 6);
+};
+console.log(dice());
+writeLine("Ex. 2");
 /* Ex.2 
     Write a function called "whoIsBigger" which receives 2 numbers as parameters and returns the biggest one.
 */
+const whoIsBigger = (num1, num2) => {
+  if (num1 > num2) {
+    return `${num1} is the biggest`;
+  } else {
+    return `${num2} is the biggest`;
+  }
+};
 
+console.log(whoIsBigger(76, 111));
+
+writeLine("Ex. 3");
 /* Ex.3
     Write a function called "splitMe" which receives a string as a parameter and returns an array with every word in that string.
     Ex. splitMe("I love coding") => returns ["I", "Love", "Coding"]
 */
+const splitMe = (str) => {
+  return str.split(" ");
+};
 
+console.log(splitMe("i love coding"));
+writeLine("Ex. 4");
 /* Ex.4
     Write a function called "deleteOne" which receives a string and a boolean as parameters. If the boolean value is true it should return the string without the first letter, otherwise it should remove the last one from it.
 */
-
+const deleteOne = (str, Boolean) => {
+  if (Boolean === true) {
+    return str.substring(1);
+  } else {
+    return str.slice(0, -1);
+  }
+};
+console.log(deleteOne("wmy mummyt", false));
+writeLine("Ex. 5");
 /* Ex.5
    Write a function called "onlyLetters" which receives a string as a parameter and returns it removing all the digits.
    Ex.: onlyLetters("I have 4 dogs")  => returns "I have  dogs"
 */
-
+// const onlyLetters = (str) => {
+//   for (let i = 0; i < str.length; i++)
+//     if (typeof str[i] === "number") {
+//       return str.substr(str[i], str.length);
+//     }
+// };
+// console.log(onlyLetters("i love my mummy 4 real"));
+writeLine("Ex. 6");
 /* Ex.6 
    Write a function called "isThisAnEmail" which receives a string as a parameter and returns true if the string is a valid email address.
 */
-
+writeLine("Ex. 7");
 /* Ex.7
    Write a function called "whatDayIsIt" that should return the current day of the week.
 */
-
+writeLine("Ex. 8");
 /* Ex.8
     Write a function called "rollTheDices" which receives a number as a parameter.
     It should invoke the dice() function defined in Ex1 the specified amount of times,
@@ -81,56 +138,62 @@
         values: [3, 3, 4]
     }
 */
-
+writeLine("Ex. 9");
 /* Ex.9
    Write a function called "howManyDays" which receives a date as a parameter and should return the number of days passed since that date.
 */
-
+writeLine("Ex. 10");
 /* Ex.10
    Write a function called "isTodayMyBirthday" which should return true if today's your birthday, false otherwise.
 */
 
-// JS Arrays // Objs
+console.log(`--------JAVASCRIPT OBJECTS---------`);
 // NOTE: movies array is defined at the end of this file!
+writeLine("Ex. 11");
 
 /* Ex.11
    Write a function called "deleteProp" which receives an object and a string as parameters, and returns the given object after deleting its property named as the given string.
 */
+writeLine("Ex. 12");
 
 /* Ex.12 
     Write a function called "olderMovie" which finds the oldest movie in the array provided at the end of this file.
 */
-
+writeLine("Ex. 13");
 /* Ex.13
     Write a function called "countMovies" which returns the number of movies contained in the array provided at the end of this file.
 */
-
+writeLine("Ex. 14");
 /* Ex.14
     Write a function called "onlyTheTitles" which creates an array with just the titles of the movies provided in the array at the end of the file.
 */
+writeLine("Ex. 15");
 
 /* Ex.15
    Write a function called "onlyInThisMillennium" which returns only the movies produced in this millennium.
 */
+writeLine("Ex. 16");
 
 /* Ex.16 
     Write a function called "getMovieById" which receives an id as a parameter and returns the movie with the given id.
 */
+writeLine("Ex. 17");
 
 /* Ex.17
     Write a function called "sumAllTheYears" which returns the sum of all the years in which the movies provided have been produced.
 */
+writeLine("Ex. 18");
 
 /* Ex.18
     Write a function called "searchByTitle" which receives a string as a parameter and returns all the movies which contain that string in the title.
 */
-
+writeLine("Ex. 19");
 /* Ex.19
     Write a function called "searchAndDivide" which receives a string as a parameter and returns an object;
     this object should contain an array called "match", made by all the movies which contain the given string in the title,
     and another array "unmatch" with all the remaining ones.
 */
-
+writeLine("Ex. 20");
 /* Ex.20
    Write a function called "removeIndex" which receives a number as a parameter and returns the movies array without the element in the given position.
 */
